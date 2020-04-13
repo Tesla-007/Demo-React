@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Demo-React/static/css/main.cc26c9de.chunk.css",
+    "main.js": "/Demo-React/static/js/main.0298f219.chunk.js",
+    "main.js.map": "/Demo-React/static/js/main.0298f219.chunk.js.map",
+    "runtime-main.js": "/Demo-React/static/js/runtime-main.05e2988f.js",
+    "runtime-main.js.map": "/Demo-React/static/js/runtime-main.05e2988f.js.map",
+    "static/js/2.bdf664a7.chunk.js": "/Demo-React/static/js/2.bdf664a7.chunk.js",
+    "static/js/2.bdf664a7.chunk.js.map": "/Demo-React/static/js/2.bdf664a7.chunk.js.map",
+    "index.html": "/Demo-React/index.html",
+    "precache-manifest.0b3a8d4c8b05591ce79361143b992992.js": "/Demo-React/precache-manifest.0b3a8d4c8b05591ce79361143b992992.js",
+    "service-worker.js": "/Demo-React/service-worker.js",
+    "static/css/main.cc26c9de.chunk.css.map": "/Demo-React/static/css/main.cc26c9de.chunk.css.map",
+    "static/js/2.bdf664a7.chunk.js.LICENSE.txt": "/Demo-React/static/js/2.bdf664a7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.05e2988f.js",
+    "static/js/2.bdf664a7.chunk.js",
+    "static/css/main.cc26c9de.chunk.css",
+    "static/js/main.0298f219.chunk.js"
+  ]
+}
