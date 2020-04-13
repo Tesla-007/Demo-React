@@ -1,0 +1,78 @@
+body {
+    background-image: linear-gradient(to right, #fb6363 50%, #deb66c);
+  }
+form {
+    display: grid;
+    width: 26%;
+    margin: auto;
+    border: 0.1px solid grey;
+    border-radius: 20px;
+    background-color: white;
+    margin-top: 5%;
+    padding: 2rem;
+    row-gap: 8px;
+}
+label {
+    color: #6565fb;
+    font-weight: 500;
+    font-size: 0.95rem;
+    font-family: cursive;
+}
+
+input,select{
+    border: 0.1px solid #80808045;
+    border-radius: 20px;
+    outline: none;
+    background-color: #80808045;
+    height: 2.1rem;
+    text-indent: 20px;
+  }
+
+.text-danger{
+    font-family: cursive;
+    font-size: 0.8rem;
+    color: red;
+    text-indent: 20px;
+}
+.text-hide{
+    display: none;
+}
+
+button {
+    height: 2.1rem;
+    border: 0.1px solid white;
+    outline: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #fb6363 50%, #e898a6);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+  
+button:disabled{
+    background-image: none;
+    background-color: #8080801f;
+    color: #0000005e;
+    border: 1px solid #00000026;
+    cursor: not-allowed;
+}
+
+.showDetails{
+    position: fixed;
+    top: 2rem;
+    right: 3rem;
+    background-color: white;
+    border: 1.2rem solid white;
+    font-family: cursive;
+    font-size: 0.8rem;
+    width: 13rem;
+}
+
+fieldset>p:last-of-type{
+    color: #6565fb;
+}
+fieldset>p:last-of-type>span{
+    color: red;
+}
+
