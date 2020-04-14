@@ -12,7 +12,7 @@ form {
     padding: 2rem;
     row-gap: 8px;
 }
-label {
+label,#genderLabel,#hobbiesLabel {
     color: #6565fb;
     font-weight: 500;
     font-size: 0.95rem;
@@ -74,5 +74,14 @@ fieldset>p:last-of-type{
 }
 fieldset>p:last-of-type>span{
     color: red;
+}
+.radio-button,.checkbox {
+    display: flex;
+    justify-content: space-around;
+}
+.radio-button>.radio-grp,
+.checkbox>.checkbox-grp{
+    display: flex;
+    align-items: center;
 }
 

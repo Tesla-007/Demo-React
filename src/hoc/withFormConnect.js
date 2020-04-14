@@ -14,18 +14,31 @@ const formConnect = (WrappedComponent) => {
 
 
             updateFormState = (e, element) => {
+                debugger;
                 let elValid = true;
                 const el = this.state.formEl[element];
                 const value = e.target.value;
+                const isCheckBox = ( el.type && el.type === "checkbox" ) ? true : false;
+                let checkData = "";
+                if( isCheckBox ) {
+                    const hobbiesList = e.target.form.elements.hobbies;
+                    const checkDataArr = [];
+                    hobbiesList.forEach( hobby => {
+                        if( hobby.checked === true )
+                            checkDataArr.push(hobby.value);
+                    })
+                    checkData = checkDataArr.join(", ");
+                }
                 el.validators.forEach( validator => {
-                    if( this.isElementValid(elValid, validator, value) )
+                    if( this.isElementValid(isCheckBox, checkData, elValid, validator, value) )
                     {
+                        const val = ( isCheckBox ) ? "" : value;
                         const errMessage = validator.errorMessage;
-                        this.setState(this.updateState(value, el, errMessage), this.updateFormValidity)
+                        this.setState(this.updateState(val, el, errMessage), this.updateFormValidity)
                         elValid = false;
                     }
         
-                    else if( elValid && validator.REQUIREDPATTERN ){
+                    else if(  validator.REQUIREDPATTERN ){
                         validator.REQUIREDPATTERN.forEach(( data, validateForm ) => {
                             if( validateForm === "EMAIL" && !e.target.validity.valid)
                                 {
@@ -48,15 +61,21 @@ const formConnect = (WrappedComponent) => {
                     })
                 }
                 if( elValid )
-                    this.setState(this.updateState(value, el, "", true), this.updateFormValidity);
-            }
+                {
+                    if( isCheckBox ) 
+                        this.setState(this.updateState(checkData, el, "", true), this.updateFormValidity);
+                    else
+                        this.setState(this.updateState(value, el, "", true), this.updateFormValidity);
+                }     
+        }
 
 
-            isElementValid = (elValid, validator, value) => {
-                    return (
-                        ( elValid && validator.REQUIRED && value === "" ) ||
-                        ( elValid && validator.MINLENGTH && value.length < validator.MINLENGTH )
-                    );
+            isElementValid = (isCheckBox, checkData, elValid, validator, value ) => {
+                return (
+                    ( isCheckBox && checkData === "" ) ||
+                    ( !isCheckBox && elValid && validator.REQUIRED && value === "" ) ||
+                    ( !isCheckBox && elValid && validator.MINLENGTH && value.length < validator.MINLENGTH )
+                );
             }
 
             updateState = (value, element,errMessage="", elValid=false, formValid = false) => {

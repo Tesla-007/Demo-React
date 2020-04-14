@@ -49,6 +49,26 @@ class Auth extends Component {
             customValidators : Validators.CUSTOMVALIDATORS( 
                                         ["REQUIRED_ALPHA_NUMERIC", this.requiredAplhaNumeric, "Password need to contain alpha numeric characters"]
                                                         )
+        },
+        gender : {
+            name         : "gender",
+            type         : "radio",
+            valid        : false,
+            touched      : false,
+            value        : "",
+            errorMessage : "",
+            data         : [ ["MALE" , "MALE"], ["FEMALE", "FEMALE"], ["OTHERS", "OTHERS"] ],
+            validators   : [ Validators.REQUIRED("Select a Gender") ]
+        },
+        hobbies : {
+            name         : "hobbies",
+            type         : "checkbox",
+            valid        : false,
+            touched      : false,
+            value        : "",
+            errorMessage : "",
+            data         : [ ["CRICKET" , "CRICKET"], ["FOOTBALL", "FOOTBALL"], ["HOCKEY", "HOCKEY"] ],
+            validators   : [ Validators.REQUIRED("Select atleast one hobby") ]
         }
     }
 
@@ -76,20 +96,59 @@ class Auth extends Component {
                                     autoComplete =  { this.props.formEl.password.name }
                                     onChange = { (e) => this.onElementChange( e, this.props.formEl.password.name ) }/>
                             <span className = { ( !this.props.formEl.password.valid && this.props.formEl.password.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.password.errorMessage } </span>
-                            <label htmlFor = { this.props.formEl.city.name }>SELECT A CITY : </label>
+                            <label htmlFor = { this.props.formEl.city.name }>Select a City : </label>
                             <select id       = "city"
                                     name     = { this.props.formEl.city.name }
                                     value    = { this.props.formEl.city.value }
                                     autoComplete =  { this.props.formEl.city.name }
                                     onChange = { (e) => this.onElementChange( e, this.props.formEl.city.name ) }>
                                 { 
-                                    this.props.formEl.city.data.map( city =>  
-                                                                        <option key   = { city[1] } 
-                                                                                value = { city[1] }>{ city[0] }</option>
+                                    this.props.formEl.city.data.map( ([ cityValue , cityKey ]) =>  
+                                                                        <option key   = { cityKey } 
+                                                                                value = { cityKey }>{ cityValue }</option>
                                                                    ) 
                                 }
                             </select>
                             <span className = { ( !this.props.formEl.city.valid && this.props.formEl.city.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.city.errorMessage } </span>
+
+                            <span id = "genderLabel">Select A Gender</span>
+                            <div className = "radio-button">
+                                { 
+                                    this.props.formEl.gender.data.map( ([ genderValue , genderKey ]) =>  
+                                                                    <div key = { genderValue } className = "radio-grp">
+                                                                        <input type   = { this.props.formEl.gender.type } 
+                                                                               id     = { genderKey }
+                                                                               name   = { this.props.formEl.gender.name }
+                                                                               value  = { genderKey } 
+                                                                               onChange = { (e) => this.onElementChange( e, this.props.formEl.gender.name ) } />
+                                                                        <label htmlFor    = { this.props.formEl.gender.name }>
+                                                                                            { genderValue }
+                                                                        </label>   
+                                                                    </div>
+                                                                     ) 
+                                }
+                                <span className = { ( !this.props.formEl.gender.valid && this.props.formEl.gender.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.gender.errorMessage } </span>
+                            </div>
+                            
+                            <span id = "hobbiesLabel">Select Your Hobbies</span>
+                            <div className = "checkbox">
+                                { 
+                                    this.props.formEl.hobbies.data.map( ([ hobbyValue , hobbyKey ]) =>  
+                                                                    <div key = { hobbyValue } className = "checkbox-grp">
+                                                                        <input type   = { this.props.formEl.hobbies.type } 
+                                                                               id     = { hobbyKey }
+                                                                               name   = { this.props.formEl.hobbies.name }
+                                                                               value  = { hobbyKey } 
+                                                                               onChange = { (e) => this.onElementChange( e, this.props.formEl.hobbies.name ) } />
+                                                                        <label htmlFor  = { this.props.formEl.hobbies.name }>
+                                                                                            { hobbyValue }
+                                                                        </label>   
+                                                                    </div>
+                                                                     ) 
+                                }
+                            </div>
+                            <span className = { ( !this.props.formEl.hobbies.valid && this.props.formEl.hobbies.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.hobbies.errorMessage } </span>
+
 
                             <button type = "submit" disabled = { !this.props.formEl.valid } >SignUp</button>
                         </form> :
