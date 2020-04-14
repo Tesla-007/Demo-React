@@ -47,7 +47,7 @@ class Auth extends Component {
                             Validators.MINLENGTH(6, "Password must be of atleast 6 characters" ) 
                         ],
             customValidators : Validators.CUSTOMVALIDATORS( 
-                                        ["REQUIRED_ALPHA_NUMERIC", this.requiredAplhaNumeric, "Password need to contain alpha numeric characters"]
+                                        ["REQUIRED_ALPHA_NUMERIC", this.requiredAplhaNumeric, "Password need to contain alpha numeric(@) characters"]
                                                         )
         },
         gender : {
