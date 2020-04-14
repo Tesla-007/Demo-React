@@ -14,7 +14,6 @@ const formConnect = (WrappedComponent) => {
 
 
             updateFormState = (e, element) => {
-                debugger;
                 let elValid = true;
                 const el = this.state.formEl[element];
                 const value = e.target.value;
