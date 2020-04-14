@@ -60,11 +60,11 @@ const formConnect = (WrappedComponent) => {
             }
 
             updateState = (value, element,errMessage="", elValid=false, formValid = false) => {
-                const jsonString = '{"'+ element.type +'": { "value"   : "' + value +'", "valid"   : '+ elValid +', "touched" : '+ true +', "errorMessage"   : "'+ errMessage +'" } }';
+                const jsonString = '{"'+ element.name +'": { "value"   : "' + value +'", "valid"   : '+ elValid +', "touched" : '+ true +', "errorMessage"   : "'+ errMessage +'" } }';
                 const jsonData = JSON.parse(jsonString);
-                jsonData[element.type] = {
+                jsonData[element.name] = {
                     ...element,
-                    ...jsonData[element.type]
+                    ...jsonData[element.name]
                 };
                 return  {
                         "formEl" : {

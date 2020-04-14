@@ -26,20 +26,29 @@ class Auth extends Component {
                             Validators.REQUIREDPATTERN( [ PATTERN.EMAIL, "Enter a valid email address" ] ) 
                          ]
         },
+        city     : {
+            name         : "city",
+            valid        : false,
+            touched      : false,
+            value        : "",
+            errorMessage : "",
+            data         : [["PLEASE SELECT A CITY" , ""], ["KOLKATA", "KOLKATA"], ["MUMBAI", "MUMBAI"], [ "BANGALORE", "BANGALORE" ]],
+            validators   : [ Validators.REQUIRED("Select a City") ]
+        },
         password : {
-        name       : "password",
-        type       : "password",
-        valid      : false,
-        touched    : false,
-        value      : "",
-        errorMessage : "",
-        validators : [ 
-                        Validators.REQUIRED("Password Required"), 
-                        Validators.MINLENGTH(6, "Password must be of atleast 6 characters" ) 
-                     ],
-        customValidators : Validators.CUSTOMVALIDATORS( 
-                                    ["REQUIRED_ALPHA_NUMERIC", this.requiredAplhaNumeric, "Password need to contain alpha numeric characters"]
-                                                      )
+            name       : "password",
+            type       : "password",
+            valid      : false,
+            touched    : false,
+            value      : "",
+            errorMessage : "",
+            validators : [ 
+                            Validators.REQUIRED("Password Required"), 
+                            Validators.MINLENGTH(6, "Password must be of atleast 6 characters" ) 
+                        ],
+            customValidators : Validators.CUSTOMVALIDATORS( 
+                                        ["REQUIRED_ALPHA_NUMERIC", this.requiredAplhaNumeric, "Password need to contain alpha numeric characters"]
+                                                        )
         }
     }
 
@@ -57,7 +66,7 @@ class Auth extends Component {
                                     name     = { this.props.formEl.email.name }
                                     value    = { this.props.formEl.email.value }
                                     autoComplete =  { this.props.formEl.email.name }
-                                    onChange = { (e) => this.onElementChange( e, this.props.formEl.email.type ) }/>
+                                    onChange = { (e) => this.onElementChange( e, this.props.formEl.email.name ) }/>
                             <span className = { ( !this.props.formEl.email.valid && this.props.formEl.email.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.email.errorMessage } </span>
                             <label htmlFor = { this.props.formEl.password.name }>Password : </label>
                             <input  type     = { this.props.formEl.password.type } 
@@ -65,8 +74,23 @@ class Auth extends Component {
                                     name     = { this.props.formEl.password.name }
                                     value    = { this.props.formEl.password.value }
                                     autoComplete =  { this.props.formEl.password.name }
-                                    onChange = { (e) => this.onElementChange( e, this.props.formEl.password.type ) }/>
+                                    onChange = { (e) => this.onElementChange( e, this.props.formEl.password.name ) }/>
                             <span className = { ( !this.props.formEl.password.valid && this.props.formEl.password.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.password.errorMessage } </span>
+                            <label htmlFor = { this.props.formEl.city.name }>SELECT A CITY : </label>
+                            <select id       = "city"
+                                    name     = { this.props.formEl.city.name }
+                                    value    = { this.props.formEl.city.value }
+                                    autoComplete =  { this.props.formEl.city.name }
+                                    onChange = { (e) => this.onElementChange( e, this.props.formEl.city.name ) }>
+                                { 
+                                    this.props.formEl.city.data.map( city =>  
+                                                                        <option key   = { city[1] } 
+                                                                                value = { city[1] }>{ city[0] }</option>
+                                                                   ) 
+                                }
+                            </select>
+                            <span className = { ( !this.props.formEl.city.valid && this.props.formEl.city.touched) ? "text-danger": "text-hide" }> *{ this.props.formEl.city.errorMessage } </span>
+
                             <button type = "submit" disabled = { !this.props.formEl.valid } >SignUp</button>
                         </form> :
                         null
