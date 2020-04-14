@@ -20,3 +20,5 @@ currently there is only one pattern check "EMAIL"
 you can more pattern check in generic file metioned above
 
 CUSTOM VALIDATORS are same as VALIDATORS except you need to pass 3 parameters (err, errFunction, errorDetails)
+
+NOTE : The name and element property should have the same "string name", in order to retrieve data correctly.
